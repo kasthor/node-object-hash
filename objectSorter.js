@@ -199,9 +199,12 @@ function makeObjectSorter(options) {
   };
 
   stringifier.unknown = function unknownToString(obj) {
-    var constructorName = obj.constructor ? obj.constructor.name : 'unknonw';
+    var constructorName = obj.constructor ? obj.constructor.name : 'unknown';
     var objectName = typeof obj.toString === 'function' ? obj.toString() : 'unknown';
 
+    if (coerce) {
+      return objectName;
+    }
     return '<:' + constructorName + '>:' + objectName;
   };
 
